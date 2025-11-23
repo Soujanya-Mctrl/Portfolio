@@ -1,0 +1,141 @@
+"use client"
+
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button";
+
+// Hero.tsx
+// A responsive, accessible hero section for a developer/designer portfolio.
+// - uses Tailwind CSS classes
+// - uses Framer Motion for subtle entrance and text animations
+// - uses shadcn/ui Button component (import path: @/components/ui/button)
+// Drop this file into your components folder and import it in your page.
+
+const roles = ["Frontend Engineer", "UI/UX Designer", "React Developer", "Open Source Enthusiast"];
+
+export function Hero() {
+    const [wordIndex, setWordIndex] = useState(0);
+
+    // cycle role words every 2.2s
+    useEffect(() => {
+        const t = setInterval(() => {
+            setWordIndex((i) => (i + 1) % roles.length);
+        }, 2200);
+        return () => clearInterval(t);
+    }, []);
+
+    return (
+        <section
+            aria-labelledby="hero-heading"
+            className="relative overflow-hidden px-4 py-16 md:px-8 md:py-24 lg:py-32"
+        >
+            <div className="mx-auto max-w-7xl">
+                <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+
+                    {/* left: text */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                        <p className="mb-4 text-sm font-medium uppercase tracking-wide text-muted-foreground">
+                            Hi, I’m
+                        </p>
+
+                        <h1 id="hero-heading" className="mb-6 max-w-2xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+                            Soujanya Mallick — building delightful interfaces
+                        </h1>
+
+                        <p className="mb-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                            I design and build modern web experiences with a focus on performance, accessibility and craft.
+                            Currently working on React + Next.js projects and open-source tooling.
+                        </p>
+
+                        <div className="mb-8 flex flex-wrap gap-3">
+                            <Link href="#projects" aria-label="View projects">
+                                <Button>
+                                    View work
+                                </Button>
+                            </Link>
+
+                            <Link href="mailto:youremail@example.com" aria-label="Contact me">
+                                <Button variant="outline">
+                                    Contact
+                                </Button>
+                            </Link>
+
+                            <span className="ml-2 inline-flex items-center text-sm text-muted-foreground">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c.9 0 1.7.35 2.3.9m-4.6 0C9.3 8.35 10.1 8 11 8m7 8v1a3 3 0 01-3 3H9a3 3 0 01-3-3v-1m14 0H5" />
+                                </svg>
+                                <span>Open to freelance</span>
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-4 whitespace-nowrap text-sm text-muted-foreground">
+                            <div className="font-medium">I’m a</div>
+                            <motion.div
+                                key={wordIndex}
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -6 }}
+                                transition={{ duration: 0.25 }}
+                                className="rounded-md bg-muted px-2 py-1 font-mono text-sm"
+                                aria-live="polite"
+                            >
+                                {roles[wordIndex]}
+                            </motion.div>
+                        </div>
+                    </motion.div>
+
+                    {/* right: image / profile */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.15 }}
+                        className="flex justify-center lg:justify-end"
+                    >
+                        <div className="relative w-[220px] sm:w-[280px] md:w-[360px] lg:w-[400px]">
+                            <div className="pointer-events-none absolute -inset-0 rounded-2xl bg-gradient-to-tr from-primary/30 via-transparent to-accent/20 blur-3xl" aria-hidden />
+                            <div className="relative overflow-hidden rounded-2xl ring-1 ring-ring">
+                                <Image
+                                    src="/images/profile.jpg"
+                                    alt="Portrait of Soujanya Mallick"
+                                    width={640}
+                                    height={640}
+                                    className="aspect-square object-cover"
+                                    priority
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+
+                </div>
+
+                {/* subtle scroll hint */}
+                <div className="mt-12 flex justify-center">
+                    <a href="#about" className="group -mb-2 inline-flex items-center text-sm text-muted-foreground" aria-label="Scroll to about">
+                        <span className="mr-2">Scroll</span>
+                        <span className="inline-block h-10 w-6 overflow-hidden">
+                            <motion.span
+                                animate={{ y: [0, 8, 0] }}
+                                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                                className="inline-block rounded-full bg-muted px-0.5 py-2"
+                            />
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/*
+Usage notes:
+- Ensure you have Tailwind set up and the `container` utility configured.
+- Replace the Image `src` with your profile image path or a remote URL (update next.config.js for external images).
+- The Button import expects shadcn/ui Button at `@/components/ui/button`. Adjust the import or use normal <button> if you don't have it.
+- Customize copy, roles array and timings to taste.
+*/
