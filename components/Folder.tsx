@@ -38,7 +38,7 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = []
     const [open, setOpen] = useState(false);
     const [paperOffsets, setPaperOffsets] = useState(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
 
-    const folderBackColor = darkenColor(color, 0.08);
+    const folderBackColor = darkenColor(color, 0.2);
     const paper1 = '#ffffff';
     const paper2 = '#f4f4f5'; // zinc-100
     const paper3 = '#e4e4e7'; // zinc-200

@@ -16,7 +16,7 @@ type Skill = {
 };
 
 const ICON_MAP: Record<string, string> = {
-    "React": "reactjs",
+    "React": "react",
     "Next.js": "nextjs",
     "Tailwind": "tailwindcss",
     "Framer Motion": "framer",
@@ -170,16 +170,26 @@ export default function Skills2() {
                                     items={[
                                         <div key="1" className="paper-content h-full w-full flex items-center justify-center p-2">
                                             <div className="w-10 h-10 flex items-center justify-center">
-                                                {ICON_MAP[skill.tools[0]] ? <StackIcon name={ICON_MAP[skill.tools[0]]} className="w-full h-full object-contain" /> : <span className="text-[20px]">🛠️</span>}
+                                                {ICON_MAP[skill.tools[0]] ? <StackIcon name={ICON_MAP[skill.tools[0]]} variant="light" className="w-full h-full object-contain" /> : <span className="text-[20px]">🛠️</span>}
                                             </div>
                                         </div>,
                                         <div key="2" className="paper-content h-full w-full flex items-center justify-center p-2">
                                             <div className="w-10 h-10 flex items-center justify-center">
-                                                {ICON_MAP[skill.tools[1]] ? <StackIcon name={ICON_MAP[skill.tools[1]]} className="w-full h-full object-contain" /> : <span className="text-[20px]">📁</span>}
+                                                {ICON_MAP[skill.tools[1]] ? <StackIcon name={ICON_MAP[skill.tools[1]]} variant="light" className="w-full h-full object-contain" /> : <span className="text-[20px]">📁</span>}
                                             </div>
                                         </div>,
                                         <div key="3" className="paper-content h-full w-full flex flex-col items-center justify-center p-2 space-y-1" onClick={() => setSelectedId(skill.id)}>
-                                            <span className="text-[20px] animate-bounce">👆</span>
+                                            <motion.span
+                                                className="text-[20px]"
+                                                animate={{ y: [0, -4, 0] }}
+                                                transition={{
+                                                    duration: 1.5,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut"
+                                                }}
+                                            >
+                                                👆
+                                            </motion.span>
                                             <span className="text-[5px] font-black uppercase tracking-tighter text-zinc-900 bg-zinc-200 px-2 py-0.5 rounded-full">Click to Open</span>
                                         </div>
                                     ]}
@@ -252,22 +262,32 @@ export default function Skills2() {
 
                                 <motion.div variants={itemVariants} className="space-y-6">
                                     <h4 className="text-sm font-bold text-zinc-500 uppercase tracking-widest">Stack</h4>
-                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    <div className="flex flex-wrap items-center gap-x-10 gap-y-8 py-4">
                                         {skill.tools.map(tool => (
-                                            <div key={tool} className="flex flex-col items-center gap-3 p-4 bg-zinc-800/40 rounded-2xl border border-zinc-700/50 hover:border-zinc-500/50 transition-colors group/tool">
-                                                <div className="w-14 h-14 flex items-center justify-center grayscale group-hover/tool:grayscale-0 transition-all p-1">
+                                            <div key={tool} className="flex flex-col items-center gap-3 group/tool cursor-default">
+                                                <motion.div
+                                                    className={`relative flex items-center justify-center ${tool === "Next.js" ? "w-20 h-20" : "w-14 h-14"}`}
+                                                    whileHover={{ scale: 1.1 }}
+                                                >
+                                                    {/* Hover Glow Effect */}
+                                                    <div
+                                                        className="absolute inset-0 rounded-full blur-2xl opacity-0 group-hover/tool:opacity-70 transition-opacity pointer-events-none"
+                                                        style={{ backgroundColor: skill.color }}
+                                                    />
+
                                                     {ICON_MAP[tool] ? (
                                                         <StackIcon
                                                             name={ICON_MAP[tool]}
-                                                            className={`w-full h-full object-contain ${tool === "Framer Motion" ? "brightness-0 invert" : ""}`}
+                                                            variant="light"
+                                                            className={`w-full h-full object-contain relative z-10 ${tool === "Framer Motion" ? "brightness-0 invert" : ""}`}
                                                         />
                                                     ) : (
-                                                        <div className="w-full h-full flex items-center justify-center border border-zinc-700 rounded-lg text-zinc-500 text-[10px] font-mono bg-zinc-900/50">
-                                                            {tool.slice(0, 3)}
+                                                        <div className="text-zinc-600 text-[10px] font-mono uppercase tracking-widest border border-zinc-800 px-3 py-1 rounded relative z-10">
+                                                            {tool}
                                                         </div>
                                                     )}
-                                                </div>
-                                                <span className="text-xs font-semibold text-zinc-400 group-hover/tool:text-white transition-colors text-center">
+                                                </motion.div>
+                                                <span className="text-[10px] font-bold text-zinc-600 group-hover/tool:text-zinc-400 uppercase tracking-[0.2em] text-center transition-colors">
                                                     {tool}
                                                 </span>
                                             </div>
