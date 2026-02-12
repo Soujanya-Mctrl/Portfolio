@@ -29,16 +29,16 @@ export function Hero() {
     return (
         <section
             aria-labelledby="hero-heading"
-            className="relative overflow-hidden px-4 py-16 md:px-8 md:py-24 lg:py-32"
+            className="relative overflow-hidden py-24 md:py-32"
         >
-            <div className="mx-auto max-w-7xl">
+            <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
                 <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
 
                     {/* left: text */}
                     <motion.div
                         initial={{ opacity: 0, x: -24 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        transition={{ duration: 0.6, ease: "easeOut" as const }}
                     >
                         <p className="mb-4 text-sm font-medium uppercase tracking-wide text-muted-foreground">
                             Hi, I’m
@@ -121,7 +121,7 @@ export function Hero() {
                         <span className="inline-block h-10 w-6 overflow-hidden">
                             <motion.span
                                 animate={{ y: [0, 8, 0] }}
-                                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" as const }}
                                 className="inline-block rounded-full bg-muted px-0.5 py-2"
                             />
                         </span>

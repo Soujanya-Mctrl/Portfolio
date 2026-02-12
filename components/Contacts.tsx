@@ -49,11 +49,11 @@ export default function Contact() {
     };
 
     return (
-        <section className="relative py-24 px-4 overflow-hidden" id="contact">
+        <section className="relative w-full py-24 md:py-32 overflow-hidden" id="contact">
             {/* Background Ambient Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            <div className="w-full max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
                 {/* LEFT COLUMN: Info & Context */}
                 <motion.div

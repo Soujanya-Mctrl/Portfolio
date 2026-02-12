@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Skills2 from "@/components/Skills2";
 import ProjectsCarousel from "@/components/Projects";
 import Qualifications from "@/components/Qualifications";
 import Contact from "@/components/Contacts";
@@ -16,7 +17,8 @@ export default function Home() {
       <main className="min-h-screen w-full bg-white dark:bg-black">
         <Hero />
         <About />
-        <Skills />
+        <Skills2 />
+        {/* <Skills /> */}
         <ProjectsCarousel />
         <Qualifications />
         <Contact />

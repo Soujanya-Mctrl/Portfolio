@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 export const fadeUp = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
 const staggerParent = {
@@ -24,14 +24,14 @@ const slideInRightSpring = {
         opacity: 1,
         x: 0,
         scale: 1,
-        transition: { type: "spring", stiffness: 85, damping: 14 },
+        transition: { type: "spring" as const, stiffness: 85, damping: 14 },
     },
 };
 
 export default function About() {
     return (
-        <section id="about" className="w-full py-24 bg-transparent dark:bg-transparent">
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="about" className="w-full py-24 md:py-32 bg-transparent dark:bg-transparent">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                 {/* CENTERED HEADING (separate from columns) */}
                 <motion.h2

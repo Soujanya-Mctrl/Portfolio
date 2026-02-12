@@ -119,149 +119,151 @@ export default function Qualifications() {
     }, []);
 
     return (
-        <section className="py-20 px-4 md:px-6 w-full max-w-6xl mx-auto">
-            <div className="text-center mb-10">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-                    Qualifications
-                </h2>
-                <p className="text-neutral-400 max-w-2xl mx-auto">
-                    Clean education cards — click “Details” for more (modal). Certifications
-                    use tall rectangular cards with subtle elevation.
-                </p>
-            </div>
-
-            {/* Tab switcher */}
-            <div className="flex items-center justify-center mb-8">
-                <div className="inline-flex rounded-full bg-neutral-900/30 p-1 gap-1 border border-white/6">
-                    <TabButton
-                        label="Education"
-                        active={activeTab === "education"}
-                        onClick={() => setActiveTab("education")}
-                    />
-                    <TabButton
-                        label="Certifications"
-                        active={activeTab === "certifications"}
-                        onClick={() => setActiveTab("certifications")}
-                        icon={<Award className="w-4 h-4 mr-2" />}
-                    />
+        <section className="w-full py-24 md:py-32">
+            <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
+                <div className="text-center mb-10">
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+                        Qualifications
+                    </h2>
+                    <p className="text-neutral-400 max-w-2xl mx-auto">
+                        Clean education cards — click “Details” for more (modal). Certifications
+                        use tall rectangular cards with subtle elevation.
+                    </p>
                 </div>
-            </div>
 
-            <div className="min-h-[380px]">
-                <AnimatePresence mode="wait" initial={false}>
-                    {activeTab === "education" ? (
-                        <motion.div
-                            key="edu"
-                            variants={list}
-                            initial="hidden"
-                            animate="visible"
-                            exit="hidden"
-                            className="max-w-4xl mx-auto grid gap-6"
-                        >
-                            {EDUCATION.map((e) => (
-                                <motion.article
-                                    key={e.id}
-                                    variants={card}
-                                    whileHover="hover"
-                                    className="relative"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <div className="flex-shrink-0 pt-2">
-                                        </div>
+                {/* Tab switcher */}
+                <div className="flex items-center justify-center mb-8">
+                    <div className="inline-flex rounded-full bg-neutral-900/30 p-1 gap-1 border border-white/6">
+                        <TabButton
+                            label="Education"
+                            active={activeTab === "education"}
+                            onClick={() => setActiveTab("education")}
+                        />
+                        <TabButton
+                            label="Certifications"
+                            active={activeTab === "certifications"}
+                            onClick={() => setActiveTab("certifications")}
+                            icon={<Award className="w-4 h-4 mr-2" />}
+                        />
+                    </div>
+                </div>
 
-                                        <div className="flex-1">
-                                            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 shadow-sm flex items-center justify-between gap-4">
-                                                <div className="min-w-0">
-                                                    <h3 className="text-lg font-semibold text-white truncate">
-                                                        {e.degree}
-                                                    </h3>
-                                                    <div className="text-indigo-400 text-sm mt-1 truncate">
-                                                        {e.institution}
+                <div className="min-h-[380px]">
+                    <AnimatePresence mode="wait" initial={false}>
+                        {activeTab === "education" ? (
+                            <motion.div
+                                key="edu"
+                                variants={list}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
+                                className="max-w-4xl mx-auto grid gap-6"
+                            >
+                                {EDUCATION.map((e) => (
+                                    <motion.article
+                                        key={e.id}
+                                        variants={card}
+                                        whileHover="hover"
+                                        className="relative"
+                                    >
+                                        <div className="flex items-start gap-4">
+                                            <div className="flex-shrink-0 pt-2">
+                                            </div>
+
+                                            <div className="flex-1">
+                                                <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 shadow-sm flex items-center justify-between gap-4">
+                                                    <div className="min-w-0">
+                                                        <h3 className="text-lg font-semibold text-white truncate">
+                                                            {e.degree}
+                                                        </h3>
+                                                        <div className="text-indigo-400 text-sm mt-1 truncate">
+                                                            {e.institution}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="text-xs font-mono text-neutral-400 inline-flex items-center gap-2 bg-neutral-800/40 px-2 py-1 rounded">
+                                                            <Calendar className="w-3.5 h-3.5" />
+                                                            <span>{e.period}</span>
+                                                        </div>
+
+                                                        <button
+                                                            onClick={() => setOpenEdu(e)}
+                                                            className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-600/10 text-indigo-200 hover:bg-indigo-600/20 transition text-sm"
+                                                        >
+                                                            Details
+                                                        </button>
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center gap-3">
-                                                    <div className="text-xs font-mono text-neutral-400 inline-flex items-center gap-2 bg-neutral-800/40 px-2 py-1 rounded">
-                                                        <Calendar className="w-3.5 h-3.5" />
-                                                        <span>{e.period}</span>
-                                                    </div>
-
-                                                    <button
-                                                        onClick={() => setOpenEdu(e)}
-                                                        className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-600/10 text-indigo-200 hover:bg-indigo-600/20 transition text-sm"
-                                                    >
-                                                        Details
-                                                    </button>
+                                                <div className="mt-3 text-xs text-neutral-400">
+                                                    {e.location}
                                                 </div>
                                             </div>
+                                        </div>
+                                    </motion.article>
+                                ))}
+                            </motion.div>
+                        ) : (
+                            // Certifications: restored as tall rectangular elevated cards (Option B)
+                            <motion.div
+                                key="certs"
+                                variants={list}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
+                                className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6"
+                            >
+                                {CERTIFICATIONS.map((c) => (
+                                    <motion.article
+                                        key={c.id}
+                                        className="relative bg-neutral-900 border border-neutral-800 rounded-2xl p-6 flex items-center justify-between gap-4 shadow-[0_8px_30px_rgba(2,6,23,0.6)] hover:shadow-[0_14px_40px_rgba(2,6,23,0.75)] transition-transform transform hover:-translate-y-1"
+                                        variants={card}
+                                    >
+                                        <div className="flex items-center gap-4 min-w-0">
+                                            <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-indigo-700/12 to-indigo-600/8 flex items-center justify-center ring-1 ring-indigo-600/10">
+                                                <Briefcase className="w-6 h-6 text-indigo-300" />
+                                            </div>
 
-                                            <div className="mt-3 text-xs text-neutral-400">
-                                                {e.location}
+                                            <div className="min-w-0">
+                                                <h4 className="text-lg font-semibold text-white leading-tight">
+                                                    {c.name}
+                                                </h4>
+                                                <div className="text-neutral-400 text-sm mt-1">{c.issuer}</div>
                                             </div>
                                         </div>
-                                    </div>
-                                </motion.article>
-                            ))}
-                        </motion.div>
-                    ) : (
-                        // Certifications: restored as tall rectangular elevated cards (Option B)
-                        <motion.div
-                            key="certs"
-                            variants={list}
-                            initial="hidden"
-                            animate="visible"
-                            exit="hidden"
-                            className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6"
-                        >
-                            {CERTIFICATIONS.map((c) => (
-                                <motion.article
-                                    key={c.id}
-                                    className="relative bg-neutral-900 border border-neutral-800 rounded-2xl p-6 flex items-center justify-between gap-4 shadow-[0_8px_30px_rgba(2,6,23,0.6)] hover:shadow-[0_14px_40px_rgba(2,6,23,0.75)] transition-transform transform hover:-translate-y-1"
-                                    variants={card}
-                                >
-                                    <div className="flex items-center gap-4 min-w-0">
-                                        <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-indigo-700/12 to-indigo-600/8 flex items-center justify-center ring-1 ring-indigo-600/10">
-                                            <Briefcase className="w-6 h-6 text-indigo-300" />
-                                        </div>
 
-                                        <div className="min-w-0">
-                                            <h4 className="text-lg font-semibold text-white leading-tight">
-                                                {c.name}
-                                            </h4>
-                                            <div className="text-neutral-400 text-sm mt-1">{c.issuer}</div>
-                                        </div>
-                                    </div>
+                                        <div className="flex items-center gap-3">
+                                            <div className="text-xs font-mono text-neutral-400 inline-flex items-center gap-2 bg-neutral-800/40 px-3 py-1 rounded">
+                                                {c.date}
+                                            </div>
 
-                                    <div className="flex items-center gap-3">
-                                        <div className="text-xs font-mono text-neutral-400 inline-flex items-center gap-2 bg-neutral-800/40 px-3 py-1 rounded">
-                                            {c.date}
+                                            <div className="flex items-center gap-2">
+                                                <a
+                                                    href={c.url}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="p-2 rounded hover:bg-neutral-800/30 transition text-neutral-300"
+                                                    aria-label={`Open ${c.name}`}
+                                                >
+                                                    <ExternalLink className="w-5 h-5" />
+                                                </a>
+                                            </div>
                                         </div>
+                                    </motion.article>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
 
-                                        <div className="flex items-center gap-2">
-                                            <a
-                                                href={c.url}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="p-2 rounded hover:bg-neutral-800/30 transition text-neutral-300"
-                                                aria-label={`Open ${c.name}`}
-                                            >
-                                                <ExternalLink className="w-5 h-5" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </motion.article>
-                            ))}
-                        </motion.div>
+                {/* Education details modal */}
+                <AnimatePresence>
+                    {openEdu && (
+                        <EducationModal item={openEdu} onClose={() => setOpenEdu(null)} />
                     )}
                 </AnimatePresence>
             </div>
-
-            {/* Education details modal */}
-            <AnimatePresence>
-                {openEdu && (
-                    <EducationModal item={openEdu} onClose={() => setOpenEdu(null)} />
-                )}
-            </AnimatePresence>
         </section>
     );
 }
