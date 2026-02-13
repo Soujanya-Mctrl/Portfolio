@@ -14,6 +14,13 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
+declare module '@react-three/fiber' {
+    interface ThreeElements {
+        meshLineGeometry: any;
+        meshLineMaterial: any;
+    }
+}
+
 // Assets from /public/lanyard/
 const cardGLB = '/lanyard/card.glb';
 const lanyard = '/lanyard/lanyard.png';
