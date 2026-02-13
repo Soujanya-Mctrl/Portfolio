@@ -109,7 +109,7 @@ export default function ProjectsCarousel() {
     };
 
     return (
-        <section className="w-full py-24 md:py-32">
+        <section id="projects" className="w-full py-24 md:py-32">
             <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
                 <motion.h2
                     variants={fadeUp}

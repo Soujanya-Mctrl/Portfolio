@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 
 const navItems = [
   { label: "About", href: "/#about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/contact" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Education", href: "/#qualifications" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Navbar() {
@@ -18,10 +20,10 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Determine if scrolled
       setIsScrolled(currentScrollY > 50);
-      
+
       // Show/hide based on scroll direction
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down & past threshold
@@ -30,7 +32,7 @@ export function Navbar() {
         // Scrolling up or at top
         setIsVisible(true);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
@@ -40,20 +42,18 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed left-1/2 z-50 transition-all duration-300 ease-in-out ${
-        isVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"
-      } ${
-        isScrolled
+      className={`fixed left-1/2 z-50 transition-all duration-300 ease-in-out ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"
+        } ${isScrolled
           ? "top-4 w-[95%] max-w-5xl -translate-x-1/2 rounded-full border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-lg"
           : "top-0 w-full -translate-x-1/2"
-      }`}
+        }`}
     >
       <div className="relative h-16 px-6 md:px-8">
 
         {/* LEFT: Logo */}
         <div className="absolute left-25 top-1/2 h-1 flex items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold">Portfolio</span>
+            <span className="text-xl font-bold">Soujanya</span>
           </Link>
         </div>
 

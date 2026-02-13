@@ -116,7 +116,7 @@ export default function Skills2() {
     const [selectedId, setSelectedId] = useState<string | null>(null);
 
     return (
-        <section className="relative min-h-[800px] py-24 md:py-32 overflow-hidden bg-black flex flex-col items-center">
+        <section id="skills" className="relative min-h-[800px] py-24 md:py-32 overflow-hidden bg-black flex flex-col items-center">
             {/* Proper Antigravity Background Integration */}
             <div className="absolute inset-0 pointer-events-none">
                 <Antigravity

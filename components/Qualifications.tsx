@@ -119,7 +119,7 @@ export default function Qualifications() {
     }, []);
 
     return (
-        <section className="w-full py-24 md:py-32">
+        <section id="qualifications" className="w-full py-24 md:py-32">
             <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
                 <div className="text-center mb-10">
                     <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
