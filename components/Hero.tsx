@@ -1,17 +1,17 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import Lanyard from "./Lanyard";
 
 // Hero.tsx
 // A responsive, accessible hero section for a developer/designer portfolio.
 // - uses Tailwind CSS classes
 // - uses Framer Motion for subtle entrance and text animations
 // - uses shadcn/ui Button component (import path: @/components/ui/button)
-// Drop this file into your components folder and import it in your page.
+// - uses interactive 3D Lanyard component
 
 const roles = ["Frontend Engineer", "UI/UX Designer", "React Developer", "Open Source Enthusiast"];
 
@@ -28,8 +28,9 @@ export function Hero() {
 
     return (
         <section
+            id="hero"
             aria-labelledby="hero-heading"
-            className="relative overflow-hidden py-24 md:py-32"
+            className="relative overflow-x-hidden overflow-y-visible py-24 md:py-32"
         >
             <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
                 <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
@@ -39,6 +40,7 @@ export function Hero() {
                         initial={{ opacity: 0, x: -24 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, ease: "easeOut" as const }}
+                        className="z-10"
                     >
                         <p className="mb-4 text-sm font-medium uppercase tracking-wide text-muted-foreground">
                             Hi, I’m
@@ -60,7 +62,7 @@ export function Hero() {
                                 </Button>
                             </Link>
 
-                            <Link href="mailto:youremail@example.com" aria-label="Contact me">
+                            <Link href="#contact" aria-label="Contact me">
                                 <Button variant="outline">
                                     Contact
                                 </Button>
@@ -90,25 +92,22 @@ export function Hero() {
                         </div>
                     </motion.div>
 
-                    {/* right: image / profile */}
+                    {/* right: image / profile / LANYARD */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.15 }}
-                        className="flex justify-center lg:justify-end"
+                        className="flex justify-center lg:justify-end min-h-[500px] md:min-h-[600px] relative z-20 overflow-visible"
                     >
-                        <div className="relative w-[220px] sm:w-[280px] md:w-[360px] lg:w-[400px]">
-                            <div className="pointer-events-none absolute -inset-0 rounded-2xl bg-gradient-to-tr from-primary/30 via-transparent to-accent/20 blur-3xl" aria-hidden />
-                            <div className="relative overflow-hidden rounded-2xl ring-1 ring-ring">
-                                <Image
-                                    src="/images/profile.jpg"
-                                    alt="Portrait of Soujanya Mallick"
-                                    width={640}
-                                    height={640}
-                                    className="aspect-square object-cover"
-                                    priority
-                                />
-                            </div>
+                        <div className="absolute inset-0 pointer-events-none">
+                            <div className="absolute -inset-0 rounded-2xl bg-gradient-to-tr from-primary/20 via-transparent to-accent/10 blur-3xl opacity-50" aria-hidden />
+                        </div>
+                        <div className="w-full h-full min-h-[500px] md:min-h-[600px] relative overflow-visible">
+                            <Lanyard
+                                position={[0, 0, 20]}
+                                gravity={[0, -40, 0]}
+                                transparent={true}
+                            />
                         </div>
                     </motion.div>
 
